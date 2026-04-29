@@ -3,58 +3,54 @@ let dataTableInitialized = false;
 
 const dataTableOptions = {
     columnDefs: [
-        { orderable: false, targets: [7, 8] },
-        
-        { className: "text-center", targets: "_all" } 
+        { className: "text-center", targets: "_all" }
     ],
-    pageLength: 3,
     destroy: true,
     responsive: true,
     autoWidth: false
 };
+
 const initDataTable = async () => {
     if (dataTableInitialized) {
         dataTable.destroy();
     }
 
-    await listaUsuarios();
+    // Cargar datos desde la API por defecto
+    await loadApiData();
 
-    dataTable = $("#datatable_users").DataTable(dataTableOptions);
+    dataTable = $("#books-table").DataTable(dataTableOptions);
     dataTableInitialized = true;
 };
 
-const listaUsuarios = async () => {
+const loadApiData = async () => {
     try {
-        const respuesta = await fetch("https://jsonplaceholder.typicode.com/users");
-        const users = await respuesta.json();
+        const respuesta = await fetch("https://fakerapi.it/api/v1/books?_quantity=50");
+        const data = await respuesta.json();
+        const books = data.data;
 
         let content = "";
-        users.forEach((user, index) => { 
+        books.forEach((book) => {
             content += `
             <tr>
-                <td>${index + 1}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.address.city}</td>
-                <td>${user.company.name}</td>
-                <td>${user.phone}</td>
-                <td>${user.website}</td>
-                <td>${user.address.zipcode}</td>
-                <td class="text-center">
-                <i class="fa-solid fa-check" style="color: green;"></i>
-                </td>
-                <td>
-                    <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                </td>
+                <td>${book.id}</td>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.genre}</td>
+                <td>${book.published}</td>
+                <td>Sí</td>
             </tr>`;
         });
 
-        document.getElementById("tableBody_users").innerHTML = content;
-        
+        document.getElementById("books-tbody").innerHTML = content;
+
+        // Reinicializar DataTable si ya existe
+        if (dataTableInitialized) {
+            dataTable.destroy();
+            dataTable = $("#books-table").DataTable(dataTableOptions);
+        }
     } catch (error) {
-        console.error(error);
-        alert("Error al cargar los usuarios");
+        console.error("Error al cargar los datos desde la API:", error);
+        alert("Error al cargar los datos desde la API");
     }
 };
 
