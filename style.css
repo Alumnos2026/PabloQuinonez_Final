@@ -1,19 +1,23 @@
 body {
-  background-color: #f8f9fa;
+    background-color: #f8f9fa;
 }
+
 .hero-banner {
-  background: linear-gradient(180deg, rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1650&q=80') center/cover no-repeat;
-  min-height: 320px;
+    background: linear-gradient(180deg, rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1650&q=80') center/cover no-repeat;
+    min-height: 320px;
 }
+
 .hero-banner h1,
 .hero-banner p {
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
 }
+
 .table-responsive {
-  overflow-x: auto;
+    overflow-x: auto;
 }
+
 footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bd-placeholder-img {
@@ -89,7 +93,8 @@ footer {
     align-items: center;
 }
 
-#error-state .alert, #empty-state .alert {
+#error-state .alert,
+#empty-state .alert {
     max-width: 500px;
     margin: 0 auto;
 }
@@ -97,19 +102,23 @@ footer {
 #table-container {
     transition: opacity 0.3s ease;
 }
+
 .hero-banner {
-  background: linear-gradient(180deg, rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1650&q=80') center/cover no-repeat;
-  min-height: 320px;
+    background: linear-gradient(180deg, rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1650&q=80') center/cover no-repeat;
+    min-height: 320px;
 }
+
 .hero-banner h1,
 .hero-banner p {
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
 }
+
 .table-responsive {
-  overflow-x: auto;
+    overflow-x: auto;
 }
+
 footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bd-placeholder-img {
