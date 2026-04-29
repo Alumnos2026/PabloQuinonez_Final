@@ -1,83 +1,61 @@
-let booksTable;
+let dataTable;
+let dataTableInitialized = false;
 
-function renderBooks(rows) {
-  const tableBody = $('#books-table tbody');
-  tableBody.empty();
-
-  rows.forEach(book => {
-    const row = `<tr>
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.genre}</td>
-      <td>${book.year}</td>
-      <td>${book.status}</td>
-    </tr>`;
-    tableBody.append(row);
-  });
-
-  if ($.fn.DataTable.isDataTable('#books-table')) {
-    booksTable.clear().destroy();
-  }
-
-  booksTable = $('#books-table').DataTable({
-    paging: true,
-    searching: true,
-    info: false,
-    lengthChange: false,
-    language: {
-      search: 'Buscar:',
-      paginate: {
-        previous: 'Anterior',
-        next: 'Siguiente'
-      },
-      zeroRecords: 'No se encontraron registros'
+const dataTableOptions = {
+    columnDefs: [
+        { orderable: false, targets: [7, 8] },
+        
+        { className: "text-center", targets: "_all" } 
+    ],
+    pageLength: 3,
+    destroy: true,
+    responsive: true,
+    autoWidth: false
+};
+const initDataTable = async () => {
+    if (dataTableInitialized) {
+        dataTable.destroy();
     }
-  });
-}
 
-function loadSampleBooks() {
-  renderBooks(booksData);
-}
+    await listaUsuarios();
 
-function fetchBooksFromApi() {
-  const apiUrl = 'https://fakerapi.it/api/v1/books?_quantity=100';
+    dataTable = $("#datatable_users").DataTable(dataTableOptions);
+    dataTableInitialized = true;
+};
 
-  $('#load-api').prop('disabled', true).text('Actualizando...');
+const listaUsuarios = async () => {
+    try {
+        const respuesta = await fetch("https://jsonplaceholder.typicode.com/users");
+        const users = await respuesta.json();
 
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error en la respuesta de la API');
-      }
-      return response.json();
-    })
-    .then(apiResponse => {
-      const books = apiResponse.data.map(book => ({
-        title: book.title,
-        author: book.author,
-        genre: book.genre,
-        year: new Date(book.published).getFullYear(),
-        status: 'Disponible'
-      }));
-      renderBooks(books);
-    })
-    .catch(() => {
-      alert('No se pudo cargar la API. Cargando datos de muestra.');
-      loadSampleBooks();
-    })
-    .finally(() => {
-      $('#load-api').prop('disabled', false).text('Actualizar desde API');
-    });
-}
+        let content = "";
+        users.forEach((user, index) => { 
+            content += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.address.city}</td>
+                <td>${user.company.name}</td>
+                <td>${user.phone}</td>
+                <td>${user.website}</td>
+                <td>${user.address.zipcode}</td>
+                <td class="text-center">
+                <i class="fa-solid fa-check" style="color: green;"></i>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>`;
+        });
 
-$(document).ready(function () {
-  loadSampleBooks();
+        document.getElementById("tableBody_users").innerHTML = content;
+        
+    } catch (error) {
+        console.error(error);
+        alert("Error al cargar los usuarios");
+    }
+};
 
-  $('#load-sample').on('click', function () {
-    loadSampleBooks();
-  });
-
-  $('#load-api').on('click', function () {
-    fetchBooksFromApi();
-  });
-});
+window.addEventListener("load", initDataTable);

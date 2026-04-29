@@ -1,108 +1,121 @@
 <!doctype html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Biblioteca - Página Principal</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-X/T9qWUyF+Cc4F1pZLZsPY0JL2XCKVHi49TALOoLFl0P3s3W7n5k4fFv8jDC+3QfDprz2N6zwVhiB6q3p2jIbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha512-X/T9qWUyF+Cc4F1pZLZsPY0JL2XCKVHi49TALOoLFl0P3s3W7n5k4fFv8jDC+3QfDprz2N6zwVhiB6q3p2jIbw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <header class="bg-dark text-white">
-      <nav class="navbar navbar-expand-lg navbar-dark container">
-        <a class="navbar-brand" href="#">Biblioteca Central</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="#coleccion">Colección</a></li>
-            <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-          </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <a class="navbar-brand" href="#">Biblioteca Central</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#coleccion">Colección</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container py-5 text-center text-white hero-banner">
+            <h1 class="display-5 fw-bold">Descubre la lectura en nuestra biblioteca</h1>
+            <p class="lead mb-4">Encuentra libros, gestiona préstamos y conserva el amor por la lectura con una
+                plataforma sencilla y moderna.</p>
+            <a href="#coleccion" class="btn btn-primary btn-lg">Explorar colección</a>
         </div>
-      </nav>
-      <div class="container py-5 text-center text-white hero-banner">
-        <h1 class="display-5 fw-bold">Descubre la lectura en nuestra biblioteca</h1>
-        <p class="lead mb-4">Encuentra libros, gestiona préstamos y conserva el amor por la lectura con una plataforma sencilla y moderna.</p>
-        <a href="#coleccion" class="btn btn-primary btn-lg">Explorar colección</a>
-      </div>
     </header>
 
     <main class="container my-5">
-      <section id="coleccion" class="mb-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <h2 class="fw-bold">Colección de libros</h2>
-            <p class="text-muted">Una vista de los libros disponibles, preparada para cargar datos con JavaScript y conectar a una API.</p>
-          </div>
-          <div>
-            <button id="load-sample" class="btn btn-outline-secondary me-2">Cargar ejemplos</button>
-            <button id="load-api" class="btn btn-primary">Actualizar desde API</button>
-          </div>
-        </div>
-
-        <div class="table-responsive shadow-sm rounded bg-white p-3">
-          <table id="books-table" class="table table-striped table-bordered align-middle">
-            <thead class="table-dark text-white">
-              <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Género</th>
-                <th>Año</th>
-                <th>Disponibilidad</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section id="servicios" class="mb-5">
-        <h2 class="fw-bold mb-4">Servicios de la biblioteca</h2>
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">Préstamo de libros</h5>
-                <p class="card-text">Gestiona préstamos rápidamente y revisa el estado de cada ejemplar con una interfaz clara y accesible.</p>
-              </div>
+        <section id="coleccion" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold">Colección de libros</h2>
+                    <p class="text-muted">Una vista de los libros disponibles, preparada para cargar datos con
+                        JavaScript y conectar a una API.</p>
+                </div>
+                <div>
+                    <button id="load-sample" class="btn btn-outline-secondary me-2">Cargar ejemplos</button>
+                    <button id="load-api" class="btn btn-primary">Actualizar desde API</button>
+                </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">Recomendaciones</h5>
-                <p class="card-text">Encuentra lecturas seleccionadas para tus intereses y disfruta de sugerencias culturales y académicas.</p>
-              </div>
+
+            <div class="table-responsive shadow-sm rounded bg-white p-3">
+                <table id="books-table" class="table table-striped table-bordered align-middle">
+                    <thead class="table-dark text-white">
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Género</th>
+                            <th>Año</th>
+                            <th>Disponibilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
+
+        <section id="servicios" class="mb-5">
+            <h2 class="fw-bold mb-4">Servicios de la biblioteca</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Préstamo de libros</h5>
+                            <p class="card-text">Gestiona préstamos rápidamente y revisa el estado de cada ejemplar con
+                                una interfaz clara y accesible.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Recomendaciones</h5>
+                            <p class="card-text">Encuentra lecturas seleccionadas para tus intereses y disfruta de
+                                sugerencias culturales y académicas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer id="contacto" class="bg-dark text-white py-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <h5>Biblioteca Central</h5>
-            <p class="mb-0">Cultura, educación y conexión. Síguenos para conocer novedades y horarios de atención.</p>
-          </div>
-          <div class="col-md-4 text-md-end mt-3 mt-md-0">
-            <p class="mb-1">contacto@biblioteca.example</p>
-            <p class="mb-0">Tel: +34 900 123 456</p>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5>Biblioteca Central</h5>
+                    <p class="mb-0">Cultura, educación y conexión. Síguenos para conocer novedades y horarios de
+                        atención.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <p class="mb-1">contacto@biblioteca.example</p>
+                    <p class="mb-0">Tel: +34 900 123 456</p>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-6A2Y/sojLxQvH+xbJcPimkD8xAIrh97Plr3vWQmAJc4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha512-3F6utnAeY/N8rH9DUY8nv3x/3yWvNnKtdnssV5wWJ69R+S5FjtuFur5+7HiWqG92u6aF73EN3tFs0iiTHz5QVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-6A2Y/sojLxQvH+xbJcPimkD8xAIrh97Plr3vWQmAJc4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+        integrity="sha512-3F6utnAeY/N8rH9DUY8nv3x/3yWvNnKtdnssV5wWJ69R+S5FjtuFur5+7HiWqG92u6aF73EN3tFs0iiTHz5QVg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
