@@ -81,40 +81,31 @@ const loadApiData = async () => {
 window.addEventListener("load", initDataTable);
 
 //============================================================
-// DEMOSTRACIÓN DE DOM - Crear elementos y modificar contenido
+// DEMOSTRACION DE DOM - Lista de Libros (simplificado)
 //============================================================
 
-let contadorElementos = 0;
-const btnCrear = document.getElementById("btn-crear-elemento");
-const listaElementos = document.getElementById("lista-elementos");
-const btnModificar = document.getElementById("btn-modificar");
-const elementoModificar = document.getElementById("elemento-a-modificar");
+let contador = 0;
+const btnAgregar = document.getElementById("btn-agregar");
+const btnCambiar = document.getElementById("btn-cambiar");
+const lista = document.getElementById("lista-libros");
+const textoDestino = document.getElementById("texto-destino");
 
-const crearYAgregarElemento = () => {
-  contadorElementos++;
-  const nuevoElemento = document.createElement("div");
-  nuevoElemento.className = "alert alert-success d-flex justify-content-between align-items-center mb-2";
-  nuevoElemento.innerHTML = `
-    <span><i class="bi bi-check-circle-fill"></i> Elemento creado #${contadorElementos} - ¡Agregado con <code>createElement</code> y <code>appendChild</code>!</span>
-    <small class="text-muted">${new Date().toLocaleTimeString()}</small>
-  `;
-  const mensajeInicial = listaElementos.querySelector("small");
-  if (mensajeInicial) {
-    listaElementos.removeChild(mensajeInicial);
-  }
-  listaElementos.appendChild(nuevoElemento);
+const agregarLibro = () => {
+  contador++;
+  const div = document.createElement("div");
+  div.className = "alert alert-success d-flex justify-content-between align-items-center mb-2";
+  div.innerHTML = `<span>Libro #${contador} - Demo DOM</span><small class="ms-2">${new Date().toLocaleTimeString()}</small>`;
+  if (lista.querySelector("small")) lista.innerHTML = "";
+  lista.appendChild(div);
 };
 
-const modificarContenido = () => {
-  const tiempoActual = new Date().toLocaleString();
-  elementoModificar.innerHTML = `
-    <strong>Contenido modificado:</strong>
-    <span class="d-block mt-2">
-      <i class="bi bi-check2-circle"></i> Texto actualizado usando <code>textContent</code> e <code>innerHTML</code>
-    </span>
-    <small class="text-muted d-block mt-2">Modificado a las: ${tiempoActual}</small>
-  `;
+const cambiarTexto = () => {
+  contador++;
+  textoDestino.textContent = "Texto modificado con textContent";
+  setTimeout(() => {
+    textoDestino.innerHTML = "<strong>Modificado con innerHTML</strong> <span class='small text-muted'>#${contador}</span>";
+  }, 1500);
 };
 
-btnCrear.addEventListener("click", crearYAgregarElemento);
-btnModificar.addEventListener("click", modificarContenido);
+if (btnAgregar) btnAgregar.addEventListener("click", agregarLibro);
+if (btnCambiar) btnCambiar.addEventListener("click", cambiarTexto);

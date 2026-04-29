@@ -88,29 +88,29 @@
             </div>
         </section>
 
-        <section id="demostracion-dom" class="mb-5">
-            <h2 class="fw-bold mb-4"><i class="bi bi-code-slash"></i> Demostración DOM - Crear Elementos</h2>
+        <section id="favoritos" class="mb-5">
             <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="h5 mb-0"><i class="bi bi-book"></i> Lista de Libros</h3>
+                </div>
                 <div class="card-body">
-                    <p class="card-text">Haz clic en el botón para crear y agregar un nuevo elemento a la lista:</p>
-                    <button id="btn-crear-elemento" class="btn btn-success mb-3">
-                        <i class="bi bi-plus-circle"></i> Crear Nuevo Elemento
+                    <button id="btn-agregar" class="btn btn-primary mb-3">
+                        <i class="bi bi-plus-circle"></i> Agregar Libro
                     </button>
-                    <div class="mt-3">
-                        <h5>Elementos creados:</h5>
-                        <div id="lista-elementos" class="border rounded p-3 bg-light">
-                            <small class="text-muted">No hay elementos aún. Haz clic en el botón para crear uno.</small>
-                        </div>
+                    <div id="lista-libros" class="border rounded p-3 bg-light">
+                        <small class="text-muted">Lista vacía. Haz clic en el botón para agregar.</small>
                     </div>
-                    <div class="mt-3">
-                        <h5><i class="bi bi-pencil-square"></i> Modificar Contenido:</h5>
-                        <p>Haz clic en este botón para modificar el contenido del elemento de abajo usando <code>textContent</code> o <code>innerHTML</code>:</p>
-                        <button id="btn-modificar" class="btn btn-primary">
-                            <i class="bi bi-pencil"></i> Modificar Contenido
-                        </button>
-                        <div id="elemento-a-modificar" class="alert alert-info mt-3 mb-0">
-                            <strong>Contenido original:</strong> Este texto será modificado al hacer clic.
-                        </div>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header bg-info text-white">
+                    <h3 class="h5 mb-0"><i class="bi bi-pencil"></i> Modificar Texto</h3>
+                </div>
+                <div class="card-body">
+                    <button id="btn-cambiar" class="btn btn-sm btn-outline-info">Cambiar Contenido</button>
+                    <div id="texto-destino" class="alert alert-info mt-3 mb-0">
+                        Texto original.
                     </div>
                 </div>
             </div>
