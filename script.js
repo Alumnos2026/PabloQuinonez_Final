@@ -1,11 +1,3 @@
-const booksData = [
-  { title: 'Cien años de soledad', author: 'Gabriel García Márquez', genre: 'Novela', year: 1967, status: 'Disponible' },
-  { title: 'Don Quijote de la Mancha', author: 'Miguel de Cervantes', genre: 'Clásico', year: 1605, status: 'Prestado' },
-  { title: 'La sombra del viento', author: 'Carlos Ruiz Zafón', genre: 'Misterio', year: 2001, status: 'Disponible' },
-  { title: 'Ficciones', author: 'Jorge Luis Borges', genre: 'Cuentos', year: 1944, status: 'Disponible' },
-  { title: 'El Principito', author: 'Antoine de Saint-Exupéry', genre: 'Infantil', year: 1943, status: 'Prestado' }
-];
-
 let booksTable;
 
 function renderBooks(rows) {
@@ -48,7 +40,7 @@ function loadSampleBooks() {
 }
 
 function fetchBooksFromApi() {
-  const apiUrl = 'https://api.example.com/biblioteca/libros';
+  const apiUrl = 'https://fakerapi.it/api/v1/books?_quantity=100';
 
   $('#load-api').prop('disabled', true).text('Actualizando...');
 
@@ -59,8 +51,14 @@ function fetchBooksFromApi() {
       }
       return response.json();
     })
-    .then(data => {
-      const books = Array.isArray(data) ? data : [];
+    .then(apiResponse => {
+      const books = apiResponse.data.map(book => ({
+        title: book.title,
+        author: book.author,
+        genre: book.genre,
+        year: new Date(book.published).getFullYear(),
+        status: 'Disponible'
+      }));
       renderBooks(books);
     })
     .catch(() => {
