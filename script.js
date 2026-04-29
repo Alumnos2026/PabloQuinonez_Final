@@ -79,3 +79,42 @@ const loadApiData = async () => {
 };
 
 window.addEventListener("load", initDataTable);
+
+//============================================================
+// DEMOSTRACIÓN DE DOM - Crear elementos y modificar contenido
+//============================================================
+
+let contadorElementos = 0;
+const btnCrear = document.getElementById("btn-crear-elemento");
+const listaElementos = document.getElementById("lista-elementos");
+const btnModificar = document.getElementById("btn-modificar");
+const elementoModificar = document.getElementById("elemento-a-modificar");
+
+const crearYAgregarElemento = () => {
+  contadorElementos++;
+  const nuevoElemento = document.createElement("div");
+  nuevoElemento.className = "alert alert-success d-flex justify-content-between align-items-center mb-2";
+  nuevoElemento.innerHTML = `
+    <span><i class="bi bi-check-circle-fill"></i> Elemento creado #${contadorElementos} - ¡Agregado con <code>createElement</code> y <code>appendChild</code>!</span>
+    <small class="text-muted">${new Date().toLocaleTimeString()}</small>
+  `;
+  const mensajeInicial = listaElementos.querySelector("small");
+  if (mensajeInicial) {
+    listaElementos.removeChild(mensajeInicial);
+  }
+  listaElementos.appendChild(nuevoElemento);
+};
+
+const modificarContenido = () => {
+  const tiempoActual = new Date().toLocaleString();
+  elementoModificar.innerHTML = `
+    <strong>Contenido modificado:</strong>
+    <span class="d-block mt-2">
+      <i class="bi bi-check2-circle"></i> Texto actualizado usando <code>textContent</code> e <code>innerHTML</code>
+    </span>
+    <small class="text-muted d-block mt-2">Modificado a las: ${tiempoActual}</small>
+  `;
+};
+
+btnCrear.addEventListener("click", crearYAgregarElemento);
+btnModificar.addEventListener("click", modificarContenido);
