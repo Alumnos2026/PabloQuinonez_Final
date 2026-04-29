@@ -14,8 +14,6 @@ const initDataTable = async () => {
     if (dataTableInitialized) {
         dataTable.destroy();
     }
-
-    // Cargar datos desde la API por defecto
     await loadApiData();
 
     dataTable = $("#books-table").DataTable(dataTableOptions);
@@ -24,7 +22,7 @@ const initDataTable = async () => {
 
 const loadApiData = async () => {
     try {
-        const respuesta = await fetch("https://fakerapi.it/api/v1/books?_quantity=50");
+        const respuesta = await fetch("https://fakerapi.it/api/v1/books?_quantity=100");
         const data = await respuesta.json();
         const books = data.data;
 
