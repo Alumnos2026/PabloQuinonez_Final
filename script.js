@@ -21,10 +21,32 @@ const initDataTable = async () => {
 };
 
 const loadApiData = async () => {
+    const loadingState = document.getElementById("loading-state");
+    const errorState = document.getElementById("error-state");
+    const emptyState = document.getElementById("empty-state");
+    const tableContainer = document.getElementById("table-container");
+    const booksTbody = document.getElementById("books-tbody");
+
+    loadingState.classList.remove("d-none");
+    errorState.classList.add("d-none");
+    emptyState.classList.add("d-none");
+    tableContainer.classList.add("d-none");
+
     try {
         const respuesta = await fetch("https://fakerapi.it/api/v1/books?_quantity=100");
+        
+        if (!respuesta.ok) {
+            throw new Error(`Error ${respuesta.status}: ${respuesta.statusText}`);
+        }
+        
         const data = await respuesta.json();
         const books = data.data;
+
+        if (!books || books.length === 0) {
+            loadingState.classList.add("d-none");
+            emptyState.classList.remove("d-none");
+            return;
+        }
 
         let content = "";
         books.forEach((book) => {
@@ -39,16 +61,21 @@ const loadApiData = async () => {
             </tr>`;
         });
 
-        document.getElementById("books-tbody").innerHTML = content;
+        booksTbody.innerHTML = content;
 
-        // Reinicializar DataTable si ya existe
+        loadingState.classList.add("d-none");
+        tableContainer.classList.remove("d-none");
+
         if (dataTableInitialized) {
             dataTable.destroy();
-            dataTable = $("#books-table").DataTable(dataTableOptions);
         }
+        dataTable = $("#books-table").DataTable(dataTableOptions);
+        dataTableInitialized = true;
+
     } catch (error) {
         console.error("Error al cargar los datos desde la API:", error);
-        alert("Error al cargar los datos desde la API");
+        loadingState.classList.add("d-none");
+        errorState.classList.remove("d-none");
     }
 };
 
